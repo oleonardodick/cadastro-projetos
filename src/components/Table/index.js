@@ -4,7 +4,7 @@ import TableItem from './TableItem';
 import Button from '../Button';
 
 function Table({
-    cabecalho, elementos, hasEdit, hasDelete
+    cabecalho, elementos, hasEdit, hasDelete, link
 }){
     return(
         <>
@@ -26,11 +26,12 @@ function Table({
                             elemento={item}
                             hasEdit={true}
                             hasDelete={false}
+                            link = "../../cadastro/materiaPrima"
                         />
                     ))}
                 </tbody>
             </table>
-            <Button as={Link} className="ButtonLink" to="../../cadastro/categoria">
+            <Button as={Link} className="ButtonLink" to={link}>
                 Cadastrar
             </Button>
         </>

@@ -11,7 +11,7 @@ function Menu() {
       <Link to="../../lista/categorias">
         Categorias
       </Link>
-      <Link to="/">
+      <Link to="../../lista/MateriaPrima">
         Matéria Prima
       </Link>
       <Link to="/">

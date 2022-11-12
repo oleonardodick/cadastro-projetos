@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
-import categoriasRepository from '../../../repositories/categorias';
+import materiaPrimaRepository from '../../../repositories/materiaPrima';
 import Template from '../../../components/Template';
 import Table from '../../../components/Table';
 
-function Categorias(){
+function MateriasPrima(){
     const [dadosIniciais, setDadosIniciais] = useState([]);
     useEffect(() => {
-        categoriasRepository.getAll()
-          .then((categorias) => {
-            setDadosIniciais(categorias);
+        materiaPrimaRepository.getAll()
+          .then((materiasPrima) => {
+            setDadosIniciais(materiasPrima);
           })
           .catch((err) => {
             console.log(err.message);
@@ -18,14 +18,14 @@ function Categorias(){
       return(
         <Template>
            <Table
-              cabecalho={['Nome', 'Cor']}
+              cabecalho={['Nome', 'Descricao','Unidade de Medida']}
               elementos={dadosIniciais}
               hasEdit={true}
               hasDelete={false}
-              link="../../cadastro/categoria"
+              link="../../cadastro/materiaPrima"
            />
         </Template>
       )
 }
 
-export default Categorias;
+export default MateriasPrima;

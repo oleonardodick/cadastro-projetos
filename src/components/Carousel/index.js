@@ -1,12 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { VideoCardGroupContainer, Title, ExtraLink } from './styles';
+import { Link } from 'react-router-dom';
 //import VideoCard from './components/VideoCard';
 import Slider, { SliderItem } from './components/Slider';
 
 function Carousel({
   category,
 }) {
+  const categoryId = category.id;
   const categoryTitle = category.nome;
   const categoryColor = category.cor;
   //const { videos } = category;
@@ -15,7 +17,13 @@ function Carousel({
       {categoryTitle && (
         <>
           <Title style={{ backgroundColor: categoryColor || 'red' }}>
-            {categoryTitle}
+            <Link 
+            to={{
+              pathname:'./../lista/projetos',
+              search:'categoria='+categoryId,
+            }}>
+              {categoryTitle}
+            </Link>
           </Title>
           {
             <ExtraLink href="/" target="_blank">

@@ -3,39 +3,48 @@ import Button from '../../../components/Button';
 import FormField from '../../../components/FormField';
 import Template from '../../../components/Template';
 import useForm from '../../../hooks/useForm';
-import categoriasRepository from '../../../repositories/categorias'
+import materiaPrimaRepository from '../../../repositories/materiaPrima'
 
-function CadastroCategoria() {
+function CadastroMateriaPrima() {
   const valoresIniciais = {
     nome: '',
-    cor: '#ffffff',
+    descricao:'',
+    unidademedida: '',
   };
 
   const { handleChange, values, clearForm } = useForm(valoresIniciais);
+
   return (
     <Template>
       <h1>
-        Cadastro de categoria
+        Cadastro de Matéria Prima
       </h1>
 
       <form onSubmit={(infos) => {
-        categoriasRepository.postCategory(values)
+        materiaPrimaRepository.postMaterial(values)
         clearForm();
       }}
       >
         <FormField
-          label="Nome da Categoria"
+          label="Nome"
           type="text"
           value={values.nome}
           name="nome"
           onChange={handleChange}
         />
-        
         <FormField
-          label="Cor"
-          type="color"
-          value={values.cor}
-          name="cor"
+          label="Descrição"
+          type="textarea"
+          value={values.descricao}
+          name="descricao"
+          onChange={handleChange}
+        />   
+
+        <FormField
+          label="Unidade de Medida"
+          type="text"
+          value={values.unidadeMedida}
+          name="unidadeMedida"
           onChange={handleChange}
         />
 
@@ -47,4 +56,4 @@ function CadastroCategoria() {
   );
 }
 
-export default CadastroCategoria;
+export default CadastroMateriaPrima;
