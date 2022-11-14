@@ -1,7 +1,13 @@
 import React from "react";
+import { Link } from "react-router-dom";
+
+const linkStyle = {
+    textDecoration: "none",
+    color: 'blue'
+  };
 
 function TableItem({
-    elemento, hasEdit, hasDelete
+    elemento, linkEditar
 }){
     return(
         <tr key={`lineOf${elemento.id}`}>
@@ -9,10 +15,7 @@ function TableItem({
                 indice > 0 &&
                 <td key={`dateOf_${dado}`}>{dado}</td>
             ))}
-            {hasEdit
-                && <th>Editar</th>}
-            {hasDelete
-                && <th>Deletar</th>}
+            {linkEditar && <td><Link to={linkEditar+elemento.id} style={linkStyle}>Editar</Link></td>}
         </tr>
     )
 }

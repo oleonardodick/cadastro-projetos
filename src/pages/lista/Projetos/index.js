@@ -7,27 +7,24 @@ import {useQuery} from '../../../hooks/useQuery';
 function Projetos(){
     const [dadosIniciais, setDadosIniciais] = useState([]);
     const query = useQuery();
-    // useEffect(() => {
-    //     projetoRepository.getProjectByCategory(id)
-    //       .then((projetos) => {
-    //         setDadosIniciais(projetos);
-    //         console.log(id);
-    //       })
-    //       .catch((err) => {
-    //         console.log(err.message);
-    //       });
-    //   }, []);
+    useEffect(() => {
+        projetoRepository.buscaProjetoPorCategoria(query.get("categoria"))
+          .then((projetos) => {
+            setDadosIniciais(projetos);
+          })
+          .catch((err) => {
+            console.log(err.message);
+          });
+      }, []);
 
       return(
         <Template>
-           {/* <Table
-              cabecalho={['Nome', 'Descricao', 'Preço']}
+           <Table
+              cabecalho={['Descricao', 'Preço', 'Capa','Categoria','Editar']}
               elementos={dadosIniciais}
-              hasEdit={true}
-              hasDelete={false}
-              link="../../cadastro/projeto"
-           /> */}
-           {console.log(query.get("categoria"))}
+              linkEditar={'../../editar/projeto?projetoId='}
+              linkCadastrar={`../../cadastro/projeto?categoria=${query.get("categoria")}`}
+           />
         </Template>
       )
 }

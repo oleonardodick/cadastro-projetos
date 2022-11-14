@@ -19,7 +19,7 @@ function CadastroCategoria() {
       </h1>
 
       <form onSubmit={(infos) => {
-        categoriasRepository.postCategory(values)
+        categoriasRepository.criaCategoria(values)
         clearForm();
       }}
       >

@@ -6,7 +6,7 @@ import Table from '../../../components/Table';
 function Categorias(){
     const [dadosIniciais, setDadosIniciais] = useState([]);
     useEffect(() => {
-        categoriasRepository.getAll()
+        categoriasRepository.buscaCategorias()
           .then((categorias) => {
             setDadosIniciais(categorias);
           })
@@ -18,11 +18,10 @@ function Categorias(){
       return(
         <Template>
            <Table
-              cabecalho={['Nome', 'Cor']}
+              cabecalho={['Nome', 'Cor','Editar']}
               elementos={dadosIniciais}
-              hasEdit={true}
-              hasDelete={false}
-              link="../../cadastro/categoria"
+              linkEditar = {"../../editar/categoria?categoriaId="}
+              linkCadastrar="../../cadastro/categoria"
            />
         </Template>
       )

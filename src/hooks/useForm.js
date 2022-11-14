@@ -23,10 +23,15 @@ function useForm(valoresIniciais) {
     setValues(valoresIniciais);
   }
 
+  function initializeForm(data){
+    setValues(data)
+  }
+
   return {
     handleChange,
     values,
     clearForm,
+    initializeForm,
   };
 }
 

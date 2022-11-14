@@ -15,20 +15,40 @@ function getAllWithProjects() {
     });
 }
 
-function getAll(){
+function buscaCategoriaPorId(categoriaId){
+  return fetch(`${URL_CATEGORIES}/${categoriaId}`)
+  .then(async (respostaServidor) => {
+    if (respostaServidor.ok) {
+      const resposta = await respostaServidor.json();
+      return resposta;
+    }
+
+    throw new Error('Não foi possível pegar os dados');
+  });
+}
+
+function buscaCategorias(){
   const promise = axios.get(URL_CATEGORIES);
   const dataPromise = promise.then((response => response.data))
   return dataPromise;
 }
 
-function postCategory({nome, cor}){
+function criaCategoria({nome, cor}){
   axios.post(URL_CATEGORIES,{nome, cor}).then((response) =>{
+    return response.data;
+  })
+}
+
+function atualizaCategoria({id, nome, cor}){
+  axios.put(`${URL_CATEGORIES}/${id}`,{nome, cor}).then((response) =>{
     return response.data;
   })
 }
 
 export default {
   getAllWithProjects,
-  getAll,
-  postCategory,
+  buscaCategoriaPorId,
+  buscaCategorias,
+  criaCategoria,
+  atualizaCategoria,
 };

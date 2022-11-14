@@ -18,11 +18,10 @@ function MateriasPrima(){
       return(
         <Template>
            <Table
-              cabecalho={['Nome', 'Descricao','Unidade de Medida']}
+              cabecalho={['Nome', 'Descricao','Unidade de Medida','Editar']}
               elementos={dadosIniciais}
-              hasEdit={true}
-              hasDelete={false}
-              link="../../cadastro/materiaPrima"
+              linkEditar={"../../editar/materiaprima?materiaPrimaId="}
+              linkCadastro="../../cadastro/materiaPrima"
            />
         </Template>
       )

@@ -4,7 +4,7 @@ import TableItem from './TableItem';
 import Button from '../Button';
 
 function Table({
-    cabecalho, elementos, hasEdit, hasDelete, link
+    cabecalho, elementos, linkEditar, linkCadastrar
 }){
     return(
         <>
@@ -14,24 +14,18 @@ function Table({
                         {cabecalho.map((elemento) => (
                             <th key={`headOF_${elemento}`}>{elemento}</th>
                         ))}
-                        {hasEdit
-                        && <th>Editar</th>}
-                        {hasDelete
-                        && <th>Deletar</th>}
                     </tr>
                 </thead>
                 <tbody>
-                    {elementos.map((item) => (
+                    {elementos.map((item) => ( 
                         <TableItem
                             elemento={item}
-                            hasEdit={true}
-                            hasDelete={false}
-                            link = "../../cadastro/materiaPrima"
+                            linkEditar={linkEditar}
                         />
                     ))}
                 </tbody>
             </table>
-            <Button as={Link} className="ButtonLink" to={link}>
+            <Button as={Link} className="ButtonLink" to={linkCadastrar}>
                 Cadastrar
             </Button>
         </>
