@@ -5,6 +5,10 @@ import Table from '../../../components/Table';
 
 function MateriasPrima(){
     const [dadosIniciais, setDadosIniciais] = useState([]);
+    const outrosLinks =[{
+      texto:"Dar entrada",
+      link:"../../cadastro/movimento?material="
+    }]
     useEffect(() => {
         materiaPrimaRepository.getAll()
           .then((materiasPrima) => {
@@ -18,10 +22,11 @@ function MateriasPrima(){
       return(
         <Template>
            <Table
-              cabecalho={['Nome', 'Descricao','Unidade de Medida','Editar']}
+              cabecalho={['Nome', 'Descricao','Unidade de Medida','Saldo']}
               elementos={dadosIniciais}
               linkEditar={"../../editar/materiaprima?materiaPrimaId="}
-              linkCadastro="../../cadastro/materiaPrima"
+              linkCadastrar="../../cadastro/materiaPrima"
+              outrosLinks={outrosLinks}
            />
         </Template>
       )

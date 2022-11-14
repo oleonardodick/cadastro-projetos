@@ -3,24 +3,23 @@ import Button from '../../../components/Button';
 import FormField from '../../../components/FormField';
 import Template from '../../../components/Template';
 import useForm from '../../../hooks/useForm';
-import categoriaRepository from '../../../repositories/categorias'
+import anotacaoRepository from '../../../repositories/anotacao'
 import {useQuery} from '../../../hooks/useQuery';
-import { useNavigate } from "react-router-dom";
 
-function EditarCategoria() {
+function EditarAnotacao() {
   const query = useQuery();
-  const navigate = useNavigate();
-  const categoriaId = query.get("categoriaId");
+  const anotacaoId = query.get("anotacaoId");
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    categoriaRepository.buscaCategoriaPorId(categoriaId)
-        .then((categorias) => {
-            setData(categorias);
+      anotacaoRepository.buscaAnotacaoPorId(anotacaoId)
+        .then((anotacoes) => {
+            setData(anotacoes);
             const valoresIniciais = {
-                id:categorias.id,
-                nome: categorias.nome,
-                cor: categorias.cor,
+                id:anotacoes.id,
+                titulo: anotacoes.titulo,
+                texto: anotacoes.texto,
+                projetoId: anotacoes.projetoId,
               };
             initializeForm(valoresIniciais)
         })
@@ -29,33 +28,31 @@ function EditarCategoria() {
         });
     }, []);
 
-
-
   const { handleChange, values, clearForm, initializeForm } = useForm(data);
   return (
     <Template>
       <h1>
-        Edição de Categoria
+        Edição de Anotacao
       </h1>
 
       <form onSubmit={(infos) => {
-        infos.preventDefault()
-        categoriaRepository.atualizaCategoria(values)
+        anotacaoRepository.atualizaAnotacao(values)
+        clearForm();
       }}
       >
         <FormField
-          label="Nome da Categoria"
+          label="Titulo da Anotacao"
           type="text"
-          value={values.nome}
-          name="nome"
+          value={values.titulo}
+          name="titulo"
           onChange={handleChange}
         />
         
         <FormField
-          label="Cor"
-          type="color"
-          value={values.cor}
-          name="cor"
+          label="Texto da Anotação "
+          type="textarea"
+          value={values.texto}
+          name="preco"
           onChange={handleChange}
         />
 
@@ -67,4 +64,4 @@ function EditarCategoria() {
   );
 }
 
-export default EditarCategoria;
+export default EditarAnotacao;

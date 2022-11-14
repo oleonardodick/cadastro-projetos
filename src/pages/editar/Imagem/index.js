@@ -3,24 +3,24 @@ import Button from '../../../components/Button';
 import FormField from '../../../components/FormField';
 import Template from '../../../components/Template';
 import useForm from '../../../hooks/useForm';
-import categoriaRepository from '../../../repositories/categorias'
+import imagemRepository from '../../../repositories/imagem'
 import {useQuery} from '../../../hooks/useQuery';
-import { useNavigate } from "react-router-dom";
 
-function EditarCategoria() {
+function EditarImagem() {
   const query = useQuery();
-  const navigate = useNavigate();
-  const categoriaId = query.get("categoriaId");
+  const imagemId = query.get("imagemId");
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    categoriaRepository.buscaCategoriaPorId(categoriaId)
-        .then((categorias) => {
-            setData(categorias);
+      imagemRepository.buscaImagemPorId(imagemId)
+        .then((imagens) => {
+            setData(imagens);
             const valoresIniciais = {
-                id:categorias.id,
-                nome: categorias.nome,
-                cor: categorias.cor,
+                id:imagens.id,
+                nome: imagens.nome,
+                caminho: imagens.caminho,
+                descricao: imagens.descricao,
+                projetoId: imagens.projetoId,
               };
             initializeForm(valoresIniciais)
         })
@@ -29,33 +29,39 @@ function EditarCategoria() {
         });
     }, []);
 
-
-
   const { handleChange, values, clearForm, initializeForm } = useForm(data);
   return (
     <Template>
       <h1>
-        Edição de Categoria
+        Edição de Imagem
       </h1>
 
       <form onSubmit={(infos) => {
-        infos.preventDefault()
-        categoriaRepository.atualizaCategoria(values)
+        imagemRepository.atualizaImagem(values)
+        clearForm();
       }}
       >
         <FormField
-          label="Nome da Categoria"
+          label="Nome da Imagem"
           type="text"
           value={values.nome}
           name="nome"
           onChange={handleChange}
         />
+
+        <FormField
+          label="Caminho da Imagem"
+          type="text"
+          value={values.caminho}
+          name="caminho"
+          onChange={handleChange}
+        />
         
         <FormField
-          label="Cor"
-          type="color"
-          value={values.cor}
-          name="cor"
+          label="Descricao da Imagem"
+          type="textarea"
+          value={values.descricao}
+          name="descricao"
           onChange={handleChange}
         />
 
@@ -67,4 +73,4 @@ function EditarCategoria() {
   );
 }
 
-export default EditarCategoria;
+export default EditarImagem;

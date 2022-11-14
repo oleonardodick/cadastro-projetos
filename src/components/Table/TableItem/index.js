@@ -7,7 +7,7 @@ const linkStyle = {
   };
 
 function TableItem({
-    elemento, linkEditar
+    elemento, linkEditar, outrosLinks
 }){
     return(
         <tr key={`lineOf${elemento.id}`}>
@@ -16,6 +16,11 @@ function TableItem({
                 <td key={`dateOf_${dado}`}>{dado}</td>
             ))}
             {linkEditar && <td><Link to={linkEditar+elemento.id} style={linkStyle}>Editar</Link></td>}
+            {outrosLinks &&
+                outrosLinks.map((link) => (
+                    <td><Link to={link.link+elemento.id} style={linkStyle}>{link.texto}</Link></td>
+                ))
+            }
         </tr>
     )
 }

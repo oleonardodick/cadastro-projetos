@@ -4,7 +4,7 @@ import TableItem from './TableItem';
 import Button from '../Button';
 
 function Table({
-    cabecalho, elementos, linkEditar, linkCadastrar
+    cabecalho, elementos, linkEditar, linkCadastrar, outrosLinks
 }){
     return(
         <>
@@ -21,6 +21,7 @@ function Table({
                         <TableItem
                             elemento={item}
                             linkEditar={linkEditar}
+                            outrosLinks={outrosLinks}
                         />
                     ))}
                 </tbody>

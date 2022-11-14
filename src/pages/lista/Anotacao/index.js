@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react";
-import projetoRepository from '../../../repositories/projetos';
+import anotacaoRepository from '../../../repositories/anotacao';
 import Template from '../../../components/Template';
 import Table from '../../../components/Table';
 import {useQuery} from '../../../hooks/useQuery';
 
-function Projetos(){
+function Anotacoes(){
     const [dadosIniciais, setDadosIniciais] = useState([]);
     const query = useQuery();
     useEffect(() => {
-        projetoRepository.buscaProjetoPorCategoria(query.get("categoria"))
-          .then((projetos) => {
-            setDadosIniciais(projetos);
+        anotacaoRepository.buscaAnotacaoPorProjeto(query.get("projeto"))
+          .then((anotacoes) => {
+            setDadosIniciais(anotacoes);
           })
           .catch((err) => {
             console.log(err.message);
@@ -20,13 +20,13 @@ function Projetos(){
       return(
         <Template>
            <Table
-              cabecalho={['Descricao', 'Preço', 'Capa','Editar']}
+              cabecalho={['Titulo', 'Texto', 'Data','Projeto','Editar']}
               elementos={dadosIniciais}
-              linkEditar={'../../editar/projeto?projetoId='}
-              linkCadastrar={`../../cadastro/projeto?categoria=${query.get("categoria")}`}
+              linkEditar={'../../editar/anotacao?anotacaoId='}
+              linkCadastrar={`../../cadastro/anotacao?projeto=${query.get("projeto")}`}
            />
         </Template>
       )
 }
 
-export default Projetos;
+export default Anotacoes;

@@ -71,14 +71,37 @@ function EditarProjeto() {
           onChange={handleChange}
         />
         <BotoesCorrelatos>
-            <Button as={Link} className="ButtonLink" to="/">
+            <Button as={Link} className="ButtonLink" 
+              to={{
+                pathname:'../../../../lista/imagem',
+                search:'projeto='+values.id,
+              }}
+            >
               Imagens
             </Button>
-            <Button as={Link} className="ButtonLink" to="/">
+            <Button as={Link} className="ButtonLink" 
+              to={{
+                pathname:'../../../../lista/video',
+                search:'projeto='+values.id,
+              }}
+            >
               Vídeos
             </Button>
-            <Button as={Link} className="ButtonLink" to="/">
+            <Button as={Link} className="ButtonLink" 
+              to={{
+                pathname:'../../../../lista/anotacao',
+                search:'projeto='+values.id,
+              }}
+            >
               Anotações
+            </Button>
+            <Button as={Link} className="ButtonLink" 
+              to={{
+                pathname:'../../../../lista/materialprojeto',
+                search:'projeto='+values.id,
+              }}
+            >
+              Materiais Projeto
             </Button>
         </BotoesCorrelatos>
 

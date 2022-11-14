@@ -9,13 +9,33 @@ function getAll(){
   return dataPromise;
 }
 
+function buscaMaterialPorId(materialId){
+  return fetch(`${URL_MATERIAPRIMA}/${materialId}`)
+  .then(async (respostaServidor) => {
+    if (respostaServidor.ok) {
+      const resposta = await respostaServidor.json();
+      return resposta;
+    }
+
+    throw new Error('Não foi possível pegar os dados');
+  });
+}
+
 function postMaterial({nome, descricao, unidadeMedida}){
   axios.post(URL_MATERIAPRIMA,{nome, descricao, unidadeMedida}).then((response) =>{
     return response.data;
   })
 }
 
+function atualizaMaterial({id, nome, descricao, unidadeMedida}){
+  axios.put(`${URL_MATERIAPRIMA}/${id}`,{nome, descricao, unidadeMedida}).then((response) =>{
+    return response.data;
+  })
+}
+
 export default {
   getAll,
+  buscaMaterialPorId,
   postMaterial,
+  atualizaMaterial,
 };

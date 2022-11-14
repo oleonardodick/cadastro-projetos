@@ -3,24 +3,24 @@ import Button from '../../../components/Button';
 import FormField from '../../../components/FormField';
 import Template from '../../../components/Template';
 import useForm from '../../../hooks/useForm';
-import categoriaRepository from '../../../repositories/categorias'
+import videoRepository from '../../../repositories/video'
 import {useQuery} from '../../../hooks/useQuery';
-import { useNavigate } from "react-router-dom";
 
-function EditarCategoria() {
+function EditarVideo() {
   const query = useQuery();
-  const navigate = useNavigate();
-  const categoriaId = query.get("categoriaId");
+  const videoId = query.get("videoId");
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    categoriaRepository.buscaCategoriaPorId(categoriaId)
-        .then((categorias) => {
-            setData(categorias);
+      videoRepository.buscaVideoPorId(videoId)
+        .then((videos) => {
+            setData(videos);
             const valoresIniciais = {
-                id:categorias.id,
-                nome: categorias.nome,
-                cor: categorias.cor,
+                id:videos.id,
+                nome: videos.nome,
+                link: videos.link,
+                descricao: videos.descricao,
+                projetoId: videos.projetoId,
               };
             initializeForm(valoresIniciais)
         })
@@ -29,33 +29,39 @@ function EditarCategoria() {
         });
     }, []);
 
-
-
   const { handleChange, values, clearForm, initializeForm } = useForm(data);
   return (
     <Template>
       <h1>
-        Edição de Categoria
+        Edição de Video
       </h1>
 
       <form onSubmit={(infos) => {
-        infos.preventDefault()
-        categoriaRepository.atualizaCategoria(values)
+        videoRepository.atualizaVideo(values)
+        clearForm();
       }}
       >
         <FormField
-          label="Nome da Categoria"
+          label="Nome do Video"
           type="text"
           value={values.nome}
           name="nome"
           onChange={handleChange}
         />
+
+        <FormField
+          label="Link da Video"
+          type="text"
+          value={values.link}
+          name="link"
+          onChange={handleChange}
+        />
         
         <FormField
-          label="Cor"
-          type="color"
-          value={values.cor}
-          name="cor"
+          label="Descricao da Video"
+          type="textarea"
+          value={values.descricao}
+          name="descricao"
           onChange={handleChange}
         />
 
@@ -67,4 +73,4 @@ function EditarCategoria() {
   );
 }
 
-export default EditarCategoria;
+export default EditarVideo;

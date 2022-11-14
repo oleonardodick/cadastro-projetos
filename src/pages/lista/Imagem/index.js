@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react";
-import projetoRepository from '../../../repositories/projetos';
+import imagemRepository from '../../../repositories/imagem';
 import Template from '../../../components/Template';
 import Table from '../../../components/Table';
 import {useQuery} from '../../../hooks/useQuery';
 
-function Projetos(){
+function Imagens(){
     const [dadosIniciais, setDadosIniciais] = useState([]);
     const query = useQuery();
     useEffect(() => {
-        projetoRepository.buscaProjetoPorCategoria(query.get("categoria"))
-          .then((projetos) => {
-            setDadosIniciais(projetos);
+        imagemRepository.buscaImagemPorProjeto(query.get("projeto"))
+          .then((imagens) => {
+            setDadosIniciais(imagens);
           })
           .catch((err) => {
             console.log(err.message);
@@ -20,13 +20,13 @@ function Projetos(){
       return(
         <Template>
            <Table
-              cabecalho={['Descricao', 'Preço', 'Capa','Editar']}
+              cabecalho={['Nome', 'Caminho', 'Descricao','Projeto','Editar']}
               elementos={dadosIniciais}
-              linkEditar={'../../editar/projeto?projetoId='}
-              linkCadastrar={`../../cadastro/projeto?categoria=${query.get("categoria")}`}
+              linkEditar={'../../editar/imagem?imagemId='}
+              linkCadastrar={`../../cadastro/imagem?projeto=${query.get("projeto")}`}
            />
         </Template>
       )
 }
 
-export default Projetos;
+export default Imagens;

@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react";
-import projetoRepository from '../../../repositories/projetos';
+import videoRepository from '../../../repositories/video';
 import Template from '../../../components/Template';
 import Table from '../../../components/Table';
 import {useQuery} from '../../../hooks/useQuery';
 
-function Projetos(){
+function Videos(){
     const [dadosIniciais, setDadosIniciais] = useState([]);
     const query = useQuery();
     useEffect(() => {
-        projetoRepository.buscaProjetoPorCategoria(query.get("categoria"))
-          .then((projetos) => {
-            setDadosIniciais(projetos);
+        videoRepository.buscaVideosPorProjeto(query.get("projeto"))
+          .then((videos) => {
+            setDadosIniciais(videos);
           })
           .catch((err) => {
             console.log(err.message);
@@ -20,13 +20,13 @@ function Projetos(){
       return(
         <Template>
            <Table
-              cabecalho={['Descricao', 'Preço', 'Capa','Editar']}
+              cabecalho={['Nome', 'Link', 'Descricao','Projeto','Editar']}
               elementos={dadosIniciais}
-              linkEditar={'../../editar/projeto?projetoId='}
-              linkCadastrar={`../../cadastro/projeto?categoria=${query.get("categoria")}`}
+              linkEditar={'../../editar/video?videoId='}
+              linkCadastrar={`../../cadastro/video?projeto=${query.get("projeto")}`}
            />
         </Template>
       )
 }
 
-export default Projetos;
+export default Videos;

@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react";
-import projetoRepository from '../../../repositories/projetos';
+import materialProjetoRepository from '../../../repositories/materialProjeto';
 import Template from '../../../components/Template';
 import Table from '../../../components/Table';
 import {useQuery} from '../../../hooks/useQuery';
 
-function Projetos(){
+function MateriaisProjeto(){
     const [dadosIniciais, setDadosIniciais] = useState([]);
     const query = useQuery();
     useEffect(() => {
-        projetoRepository.buscaProjetoPorCategoria(query.get("categoria"))
-          .then((projetos) => {
-            setDadosIniciais(projetos);
+        materialProjetoRepository.buscaMaterialProjetoPorProjeto(query.get("projeto"))
+          .then((materiaisProjeto) => {
+            setDadosIniciais(materiaisProjeto);
           })
           .catch((err) => {
             console.log(err.message);
@@ -20,13 +20,13 @@ function Projetos(){
       return(
         <Template>
            <Table
-              cabecalho={['Descricao', 'Preço', 'Capa','Editar']}
+              cabecalho={['Quantidade','Material','Editar']}
               elementos={dadosIniciais}
-              linkEditar={'../../editar/projeto?projetoId='}
-              linkCadastrar={`../../cadastro/projeto?categoria=${query.get("categoria")}`}
+              linkEditar={'../../editar/materialProjeto?materialProjetoId='}
+              linkCadastrar={`../../cadastro/materialProjeto?projeto=${query.get("projeto")}`}
            />
         </Template>
       )
 }
 
-export default Projetos;
+export default MateriaisProjeto;

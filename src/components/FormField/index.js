@@ -88,8 +88,8 @@ function FormField({
           value={value}
           name={name}
           onChange={onChange}
-          // autoComplete={hasSuggestions ? 'off' : 'on'}
-          // list={`suggestionFor_${fieldId}`}
+          autoComplete={hasSuggestions ? 'off' : 'on'}
+          list={`suggestionFor_${fieldId}`}
         />
         <Label.Text>
           {label}
