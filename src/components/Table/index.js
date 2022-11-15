@@ -26,9 +26,11 @@ function Table({
                     ))}
                 </tbody>
             </table>
-            <Button as={Link} className="ButtonLink" to={linkCadastrar}>
-                Cadastrar
-            </Button>
+            {linkCadastrar &&
+                <Button as={Link} className="ButtonLink" to={linkCadastrar}>
+                    Cadastrar
+                </Button>
+            }
         </>
     )
 }

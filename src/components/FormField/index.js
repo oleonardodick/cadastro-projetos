@@ -70,7 +70,7 @@ const Input = styled.input`
 `;
 
 function FormField({
-  label, type, value, name, onChange, suggestions,
+  label, type, value, name, onChange, suggestions, readonly
 }) {
   const fieldId = `id_${name}`;
   const isTypeTextArea = type === 'textarea';
@@ -90,6 +90,7 @@ function FormField({
           onChange={onChange}
           autoComplete={hasSuggestions ? 'off' : 'on'}
           list={`suggestionFor_${fieldId}`}
+          readonly = {readonly}
         />
         <Label.Text>
           {label}

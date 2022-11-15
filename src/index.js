@@ -33,6 +33,10 @@ import EditarMaterialProjeto from './pages/editar/MaterialProjeto';
 
 import CadastroMovimento from './pages/cadastro/Movimento';
 
+import IniciarProjeto from './pages/outras/IniciarProjeto';
+import ProjetosIniciados from './pages/outras/ProjetosIniciados';
+import FinalizarProjeto from './pages/outras/FinalizarProjeto';
+
 function Pagina404() {
   return (
     <div>
@@ -75,6 +79,10 @@ root.render(
       <Route path="/editar/materialprojeto" element={<EditarMaterialProjeto />} />
 
       <Route path="/cadastro/movimento" element={<CadastroMovimento />} />
+
+      <Route path="/iniciarprojeto" element={<IniciarProjeto />} />
+      <Route path="/projetosiniciados" element={<ProjetosIniciados />} />
+      <Route path="/finalizarprojeto" element={<FinalizarProjeto />} />
 
       <Route path="*" element={<Pagina404 />} />
     </Routes>

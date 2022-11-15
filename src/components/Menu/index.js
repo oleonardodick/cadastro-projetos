@@ -14,10 +14,10 @@ function Menu() {
       <Link to="../../lista/materiaprima">
         Matéria Prima
       </Link>
-      <Link to="/">
+      <Link to="../../iniciarprojeto">
         Iniciar Projeto
       </Link>
-      <Link to="/">
+      <Link to="../../projetosiniciados">
         Projetos iniciados
       </Link>
       <Link to="/">
