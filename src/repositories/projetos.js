@@ -38,18 +38,18 @@ function getAll(){
   return dataPromise;
 }
 
-function criaProjeto({descricao, preco, capa, categoriaId}){
+async function criaProjeto({descricao, preco, capa, categoriaId}){
   preco = parseFloat(preco)
   categoriaId = parseInt(categoriaId)
-  axios.post(URL_PROJECT,{descricao, preco, capa, categoriaId}).then((response) =>{
+  await axios.post(URL_PROJECT,{descricao, preco, capa, categoriaId}).then((response) =>{
     return response.data;
   })
 }
 
-function atualizaProjeto({id, descricao, preco, capa, categoriaId}){
+async function atualizaProjeto({id, descricao, preco, capa, categoriaId}){
   preco = parseFloat(preco)
   categoriaId = parseInt(categoriaId)
-  axios.put(`${URL_PROJECT}/${id}`,{descricao, preco, capa, categoriaId}).then((response) =>{
+  await axios.put(`${URL_PROJECT}/${id}`,{descricao, preco, capa, categoriaId}).then((response) =>{
     return response.data;
   })
 }

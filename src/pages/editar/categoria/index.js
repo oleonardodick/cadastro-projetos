@@ -41,6 +41,7 @@ function EditarCategoria() {
       <form onSubmit={(infos) => {
         infos.preventDefault()
         categoriaRepository.atualizaCategoria(values)
+          .then(() => {navigate('../../lista/categorias')})
       }}
       >
         <FormField

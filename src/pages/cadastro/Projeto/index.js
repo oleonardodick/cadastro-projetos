@@ -5,9 +5,11 @@ import Template from '../../../components/Template';
 import useForm from '../../../hooks/useForm';
 import projetoRepository from '../../../repositories/projetos'
 import {useQuery} from '../../../hooks/useQuery';
+import { useNavigate } from "react-router-dom";
 
 function CadastroProjeto() {
   const query = useQuery();
+  const navigate = useNavigate();
   const valoresIniciais = {
     descricao: '',
     preco: 0.0,
@@ -25,6 +27,7 @@ function CadastroProjeto() {
       <form onSubmit={(infos) => {
         infos.preventDefault()
         projetoRepository.criaProjeto(values)
+        .then(() => {navigate(`../../lista/projetos?categoria=${query.get("categoria")}`)})
         clearForm();
       }}
       >

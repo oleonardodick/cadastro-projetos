@@ -5,9 +5,11 @@ import Template from '../../../components/Template';
 import useForm from '../../../hooks/useForm';
 import anotacaoRepository from '../../../repositories/anotacao'
 import {useQuery} from '../../../hooks/useQuery';
+import { useNavigate } from "react-router-dom";
 
 function EditarAnotacao() {
   const query = useQuery();
+  const navigate = useNavigate();
   const anotacaoId = query.get("anotacaoId");
   const [data, setData] = useState([]);
 
@@ -36,7 +38,9 @@ function EditarAnotacao() {
       </h1>
 
       <form onSubmit={(infos) => {
+        infos.preventDefault()
         anotacaoRepository.atualizaAnotacao(values)
+        .then(() => {navigate(`../../lista/anotacao?projeto=${values.projetoId}`)})
         clearForm();
       }}
       >

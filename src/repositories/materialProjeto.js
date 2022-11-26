@@ -32,20 +32,20 @@ function buscaMaterialProjetoPorProjeto(projetoId) {
       });
   }
 
-function criaMaterialProjeto({projetoId, materialId, quantidade}){
+async function criaMaterialProjeto({projetoId, materialId, quantidade}){
   projetoId = parseInt(projetoId)
   materialId = parseInt(materialId)
   quantidade = parseFloat(quantidade)
-  axios.post(URL_MATERIALPROJETO,{projetoId, materialId, quantidade}).then((response) =>{
+  await axios.post(URL_MATERIALPROJETO,{projetoId, materialId, quantidade}).then((response) =>{
     return response.data;
   })
 }
 
-function atualizaMaterialProjeto({id, projetoId, materialId, quantidade}){
+async function atualizaMaterialProjeto({id, projetoId, materialId, quantidade}){
     projetoId = parseInt(projetoId)
     materialId = parseInt(materialId)
     quantidade = parseFloat(quantidade)
-  axios.put(`${URL_MATERIALPROJETO}/${id}`,{projetoId, materialId, quantidade}).then((response) =>{
+  await axios.put(`${URL_MATERIALPROJETO}/${id}`,{projetoId, materialId, quantidade}).then((response) =>{
     return response.data;
   })
 }

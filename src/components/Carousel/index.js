@@ -44,14 +44,16 @@ function Carousel({
       >
       {projetos.map((projeto, index) => {
         return (
-          <SliderItem key={projeto.descricao}>
-            <ImagemCard
-              imagemTitle={projeto.descricao}
-              imagemUrl={projeto.capa}
-              projetoUrl={`./../editar/projeto?projetoId=${projeto.id}`}
-              categoryColor = {categoryColor}
-            />
-          </SliderItem>
+          <>
+            <SliderItem key={projeto.descricao}>
+              <ImagemCard
+                imagemTitle={projeto.descricao}
+                imagemUrl={`imagens/${projeto.capa}`}
+                projetoUrl={`./../editar/projeto?projetoId=${projeto.id}`}
+                categoryColor = {categoryColor}
+              />
+            </SliderItem>
+          </>
         );
       })}
       </Slider>

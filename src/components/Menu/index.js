@@ -20,7 +20,7 @@ function Menu() {
       <Link to="../../projetosiniciados">
         Projetos iniciados
       </Link>
-      <Link to="/">
+      <Link to="../../projetosfinalizados">
         Projetos finalizados
       </Link>
     </nav>

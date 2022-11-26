@@ -21,6 +21,7 @@ function MateriasPrima(){
 
       return(
         <Template>
+          <h1>Matérias Prima</h1>
            <Table
               cabecalho={['Nome', 'Descricao','Unidade de Medida','Saldo']}
               elementos={dadosIniciais}

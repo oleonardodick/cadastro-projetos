@@ -5,10 +5,12 @@ import Template from '../../../components/Template';
 import useForm from '../../../hooks/useForm';
 import imagemRepository from '../../../repositories/imagem'
 import {useQuery} from '../../../hooks/useQuery';
+import { useNavigate } from "react-router-dom";
 
 function EditarImagem() {
   const query = useQuery();
   const imagemId = query.get("imagemId");
+  const navigate = useNavigate();
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -37,7 +39,9 @@ function EditarImagem() {
       </h1>
 
       <form onSubmit={(infos) => {
+        infos.preventDefault()
         imagemRepository.atualizaImagem(values)
+        .then(() => {navigate(`../../lista/imagem?projeto=${values.projetoId}`)})
         clearForm();
       }}
       >

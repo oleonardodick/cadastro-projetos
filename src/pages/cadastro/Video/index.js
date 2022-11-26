@@ -5,9 +5,11 @@ import Template from '../../../components/Template';
 import useForm from '../../../hooks/useForm';
 import videoRepository from '../../../repositories/video'
 import {useQuery} from '../../../hooks/useQuery';
+import { useNavigate } from "react-router-dom";
 
 function CadastroVideo() {
   const query = useQuery();
+  const navigate = useNavigate();
   const valoresIniciais = {
     nome: '',
     link: '',
@@ -25,6 +27,7 @@ function CadastroVideo() {
       <form onSubmit={(infos) => {
         infos.preventDefault()
         videoRepository.criaVideo(values)
+        .then(() => {navigate(`../../lista/video?projeto=${query.get("projeto")}`)})
         clearForm();
       }}
       >

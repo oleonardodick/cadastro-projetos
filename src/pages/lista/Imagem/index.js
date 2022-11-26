@@ -19,8 +19,9 @@ function Imagens(){
 
       return(
         <Template>
+          <h1>Imagens do Projeto</h1>
            <Table
-              cabecalho={['Nome', 'Caminho', 'Descricao','Projeto','Editar']}
+              cabecalho={['Nome', 'Caminho', 'Descricao','Editar']}
               elementos={dadosIniciais}
               linkEditar={'../../editar/imagem?imagemId='}
               linkCadastrar={`../../cadastro/imagem?projeto=${query.get("projeto")}`}

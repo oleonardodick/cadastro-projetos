@@ -5,9 +5,11 @@ import Template from '../../../components/Template';
 import useForm from '../../../hooks/useForm';
 import ordemProducaoRepository from '../../../repositories/ordemProducao'
 import projetoRepository from '../../../repositories/projetos'
+import { useNavigate } from 'react-router-dom';
 
 function IniciarProjeto() {
   const [projetos, setProjetos] = useState([]);
+  const navigate = useNavigate();
   const titulosProjetos = projetos.map(({ descricao }) => descricao);
 
   const valoresIniciais = {
@@ -24,7 +26,7 @@ function IniciarProjeto() {
       });
   }, []);
 
-  const { handleChange, values, clearForm } = useForm(valoresIniciais);
+  const { handleChange, values } = useForm(valoresIniciais);
   return (
     <Template>
       <h1>
@@ -42,7 +44,7 @@ function IniciarProjeto() {
             quantidade:values.quantidade,
             status:values.status
         })
-        clearForm();
+        .then(() => {navigate('../../projetosiniciados')})
       }}
       >
 

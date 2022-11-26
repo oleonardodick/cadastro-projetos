@@ -17,6 +17,7 @@ function Categorias(){
 
       return(
         <Template>
+          <h1>Categorias</h1>
            <Table
               cabecalho={['Nome', 'Cor','Editar']}
               elementos={dadosIniciais}

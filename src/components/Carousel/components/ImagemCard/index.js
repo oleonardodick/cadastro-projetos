@@ -1,25 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ImagemCardContainer from './styles';
-
-// function getYouTubeId(youtubeURL) {
-//   return youtubeURL
-//     .replace(
-//       /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/,
-//       '$7',
-//     );
-// }
+import {ImagemCardContainer, TituloProjeto} from './styles';
 
 function ImagemCard({ imagemTitle, imagemUrl, projetoUrl ,categoryColor }) {
-//   const image = `https://img.youtube.com/vi/${getYouTubeId(videoURL)}/hqdefault.jpg`;
   return (
+    <>
     <ImagemCardContainer
       url={imagemUrl}
       href={projetoUrl}
       target="_self"
       style={{ borderColor: categoryColor || 'red' }}
       title={imagemTitle}
+      imagem={process.env.PUBLIC_URL+imagemUrl}
     />
+    <TituloProjeto>{imagemTitle}</TituloProjeto>
+    </>
   );
 }
 

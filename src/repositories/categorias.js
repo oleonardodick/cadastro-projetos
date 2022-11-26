@@ -33,14 +33,14 @@ function buscaCategorias(){
   return dataPromise;
 }
 
-function criaCategoria({nome, cor}){
-  axios.post(URL_CATEGORIES,{nome, cor}).then((response) =>{
+async function criaCategoria({nome, cor}){
+  await axios.post(URL_CATEGORIES,{nome, cor}).then((response) =>{
     return response.data;
   })
 }
 
-function atualizaCategoria({id, nome, cor}){
-  axios.put(`${URL_CATEGORIES}/${id}`,{nome, cor}).then((response) =>{
+async function atualizaCategoria({id, nome, cor}){
+  await axios.put(`${URL_CATEGORIES}/${id}`,{nome, cor}).then((response) =>{
     return response.data;
   })
 }

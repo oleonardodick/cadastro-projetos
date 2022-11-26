@@ -5,10 +5,12 @@ import Template from '../../../components/Template';
 import useForm from '../../../hooks/useForm';
 import videoRepository from '../../../repositories/video'
 import {useQuery} from '../../../hooks/useQuery';
+import { useNavigate } from "react-router-dom";
 
 function EditarVideo() {
   const query = useQuery();
   const videoId = query.get("videoId");
+  const navigate = useNavigate();
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -29,7 +31,7 @@ function EditarVideo() {
         });
     }, []);
 
-  const { handleChange, values, clearForm, initializeForm } = useForm(data);
+  const { handleChange, values, initializeForm } = useForm(data);
   return (
     <Template>
       <h1>
@@ -37,8 +39,9 @@ function EditarVideo() {
       </h1>
 
       <form onSubmit={(infos) => {
+        infos.preventDefault()
         videoRepository.atualizaVideo(values)
-        clearForm();
+        .then(() => {navigate(`../../lista/video?projeto=${values.projetoId}`)})
       }}
       >
         <FormField

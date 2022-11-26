@@ -7,9 +7,11 @@ import projetoRepository from '../../../repositories/projetos'
 import {useQuery} from '../../../hooks/useQuery';
 import { Link } from "react-router-dom";
 import BotoesCorrelatos from "./style";
+import { useNavigate } from "react-router-dom";
 
 function EditarProjeto() {
   const query = useQuery();
+  const navigate = useNavigate();
   const projetoId = query.get("projetoId");
   const [data, setData] = useState([]);
 
@@ -33,7 +35,7 @@ function EditarProjeto() {
         });
     }, []);
 
-  const { handleChange, values, clearForm, initializeForm } = useForm(data);
+  const { handleChange, values, initializeForm } = useForm(data);
   return (
     <Template>
       <h1>
@@ -42,9 +44,8 @@ function EditarProjeto() {
 
       <form onSubmit={(infos) => {
         infos.preventDefault()
-        console.log(values)
         projetoRepository.atualizaProjeto(values)
-        clearForm();
+        .then(() => {navigate(`../../lista/projetos?categoria=${values.categoriaId}`)})
       }}
       >
         <FormField

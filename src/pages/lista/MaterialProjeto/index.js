@@ -19,6 +19,7 @@ function MateriaisProjeto(){
 
       return(
         <Template>
+          <h1>Matéria Prima do Projeto</h1>
            <Table
               cabecalho={['Quantidade','Material','Editar']}
               elementos={dadosIniciais}

@@ -4,6 +4,7 @@ import FormField from '../../../components/FormField';
 import Template from '../../../components/Template';
 import useForm from '../../../hooks/useForm';
 import categoriasRepository from '../../../repositories/categorias'
+import { useNavigate } from 'react-router-dom';
 
 function CadastroCategoria() {
   const valoresIniciais = {
@@ -11,7 +12,8 @@ function CadastroCategoria() {
     cor: '#ffffff',
   };
 
-  const { handleChange, values, clearForm } = useForm(valoresIniciais);
+  const { handleChange, values } = useForm(valoresIniciais);
+  const navigate = useNavigate();
   return (
     <Template>
       <h1>
@@ -19,8 +21,9 @@ function CadastroCategoria() {
       </h1>
 
       <form onSubmit={(infos) => {
+        infos.preventDefault()
         categoriasRepository.criaCategoria(values)
-        clearForm();
+          .then(() => {navigate('../../lista/categorias')})
       }}
       >
         <FormField

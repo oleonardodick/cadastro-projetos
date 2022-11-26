@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from "react";
-import ordemProducaoRepository from '../../../repositories/ordemProducao';
+import produtoProntoRepository from '../../../repositories/produtoPronto';
 import Template from '../../../components/Template';
 import Table from '../../../components/Table';
 
-function Projetos(){
+function ProdutoPronto(){
     const [dadosIniciais, setDadosIniciais] = useState([]);
     const outrosLinks =[{
-      texto:"Finalizar Projeto",
-      link:"../../finalizarprojeto?ordemProducao="
+      texto:"Efetuar venda",
+      link:"../../venderproduto?produtopronto="
     }]
     useEffect(() => {
-        ordemProducaoRepository.buscaOrdemProducaoPorStatus('I')
-          .then((projetos) => {
-            setDadosIniciais(projetos);
+        produtoProntoRepository.buscaProdutosProntos()
+          .then((produtosProntos) => {
+            setDadosIniciais(produtosProntos);
           })
           .catch((err) => {
             console.log(err.message);
@@ -21,9 +21,9 @@ function Projetos(){
 
       return(
         <Template>
-          <h1>Projetos iniciados</h1>
+          <h1>Produtos Prontos</h1>
            <Table
-              cabecalho={['Projeto', 'Quantidade']}
+              cabecalho={['Projeto', 'Saldo', 'Valor Unitário']}
               elementos={dadosIniciais}
               outrosLinks={outrosLinks}
            />
@@ -31,4 +31,4 @@ function Projetos(){
       )
 }
 
-export default Projetos;
+export default ProdutoPronto;

@@ -5,10 +5,12 @@ import Template from '../../../components/Template';
 import useForm from '../../../hooks/useForm';
 import {useQuery} from '../../../hooks/useQuery';
 import materiaPrimaRepository from '../../../repositories/materiaPrima'
+import { useNavigate } from "react-router-dom";
 
 function CadastroMateriaPrima() {
     const query = useQuery();
     const materialId = query.get("materiaPrimaId");
+    const navigate = useNavigate();
     const [data, setData] = useState([]);
   
     useEffect(() => {
@@ -19,7 +21,7 @@ function CadastroMateriaPrima() {
                   id:materiais.id,
                   nome: materiais.nome,
                   descricao:materiais.descricao,
-                  unidademedida: materiais.unidadeMedida,
+                  unidadeMedida: materiais.unidadeMedida,
                 };
               initializeForm(valoresIniciais)
           })
@@ -30,7 +32,7 @@ function CadastroMateriaPrima() {
   
   
   
-    const { handleChange, values, clearForm, initializeForm } = useForm(data);
+    const { handleChange, values, initializeForm } = useForm(data);
   return (
     <Template>
       <h1>
@@ -38,8 +40,9 @@ function CadastroMateriaPrima() {
       </h1>
 
       <form onSubmit={(infos) => {
-        materiaPrimaRepository.postMaterial(values)
-        clearForm();
+        infos.preventDefault()
+        materiaPrimaRepository.atualizaMaterial(values)
+        .then(() => {navigate('../../lista/materiaprima')})
       }}
       >
         <FormField

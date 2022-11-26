@@ -19,6 +19,7 @@ function Projetos(){
 
       return(
         <Template>
+          <h1>Projetos</h1>
            <Table
               cabecalho={['Descricao', 'Preço', 'Capa','Editar']}
               elementos={dadosIniciais}

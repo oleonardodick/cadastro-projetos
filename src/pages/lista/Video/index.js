@@ -19,8 +19,9 @@ function Videos(){
 
       return(
         <Template>
+          <h1>Vídeos do projeto</h1>
            <Table
-              cabecalho={['Nome', 'Link', 'Descricao','Projeto','Editar']}
+              cabecalho={['Nome', 'Link', 'Descrição','Editar']}
               elementos={dadosIniciais}
               linkEditar={'../../editar/video?videoId='}
               linkCadastrar={`../../cadastro/video?projeto=${query.get("projeto")}`}

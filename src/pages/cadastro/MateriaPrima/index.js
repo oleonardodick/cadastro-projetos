@@ -4,6 +4,7 @@ import FormField from '../../../components/FormField';
 import Template from '../../../components/Template';
 import useForm from '../../../hooks/useForm';
 import materiaPrimaRepository from '../../../repositories/materiaPrima'
+import { useNavigate } from 'react-router-dom';
 
 function CadastroMateriaPrima() {
   const valoresIniciais = {
@@ -12,7 +13,8 @@ function CadastroMateriaPrima() {
     unidademedida: '',
   };
 
-  const { handleChange, values, clearForm } = useForm(valoresIniciais);
+  const { handleChange, values } = useForm(valoresIniciais);
+  const navigate = useNavigate();
 
   return (
     <Template>
@@ -21,8 +23,9 @@ function CadastroMateriaPrima() {
       </h1>
 
       <form onSubmit={(infos) => {
+        infos.preventDefault()
         materiaPrimaRepository.postMaterial(values)
-        clearForm();
+        .then(() => {navigate('../../lista/materiaprima')})
       }}
       >
         <FormField

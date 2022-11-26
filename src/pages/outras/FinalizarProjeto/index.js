@@ -29,8 +29,9 @@ function FinalizarProjeto() {
         </h1>
 
         <form onSubmit={(infos) => {
+          infos.preventDefault()
             ordemProducaoRepository.atualizaOrdemProducao({id:data.id, status:'F'})
-            navigate('/')
+            .then(() => {navigate('../../projetosfinalizados')})
         }}
         >
 

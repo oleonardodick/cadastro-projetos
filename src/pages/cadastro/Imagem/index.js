@@ -5,9 +5,11 @@ import Template from '../../../components/Template';
 import useForm from '../../../hooks/useForm';
 import imagemRepository from '../../../repositories/imagem'
 import {useQuery} from '../../../hooks/useQuery';
+import { useNavigate } from "react-router-dom";
 
 function CadastroImagem() {
   const query = useQuery();
+  const navigate = useNavigate();
   const valoresIniciais = {
     nome: '',
     caminho: '',
@@ -25,6 +27,7 @@ function CadastroImagem() {
       <form onSubmit={(infos) => {
         infos.preventDefault()
         imagemRepository.criaImagem(values)
+        .then(() => {navigate(`../../lista/imagem?projeto=${query.get("projeto")}`)})
         clearForm();
       }}
       >

@@ -6,9 +6,11 @@ import useForm from '../../../hooks/useForm';
 import materialProjetoRepository from '../../../repositories/materialProjeto'
 import materialRepository from '../../../repositories/materiaPrima'
 import {useQuery} from '../../../hooks/useQuery';
+import { useNavigate } from "react-router-dom";
 
 function EditarMaterialProjeto() {
   const query = useQuery();
+  const navigate = useNavigate();
   const [materiais, setMateriais] = useState([]);
   const materialProjetoId = query.get("materialProjetoId");
   const [data, setData] = useState([]);
@@ -39,7 +41,7 @@ function EditarMaterialProjeto() {
 
     }, []);
 
-  const { handleChange, values, clearForm, initializeForm } = useForm(data);
+  const { handleChange, values, initializeForm } = useForm(data);
   return (
     <Template>
       <h1>
@@ -50,6 +52,7 @@ function EditarMaterialProjeto() {
         const materialEscolhido = materiais.find(
             (material) => material.nome === values.material
         );
+        infos.preventDefault()
 
         materialProjetoRepository.atualizaMaterialProjeto({
             id:values.id,
@@ -57,8 +60,7 @@ function EditarMaterialProjeto() {
             materialId:materialEscolhido.id,
             quantidade:values.quantidade
         })
-        
-        clearForm();
+        .then(() => {navigate(`../../lista/materialprojeto?projeto=${values.projetoId}`)})
       }}
       >
         <FormField

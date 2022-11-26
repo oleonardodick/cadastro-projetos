@@ -6,9 +6,11 @@ import useForm from '../../../hooks/useForm';
 import materialProjetoRepository from '../../../repositories/materialProjeto'
 import materialRepository from '../../../repositories/materiaPrima'
 import {useQuery} from '../../../hooks/useQuery';
+import { useNavigate } from 'react-router-dom';
 
 function CadastroMaterialProjeto() {
   const query = useQuery();
+  const navigate = useNavigate();
   const [materiais, setMateriais] = useState([]);
   const titulosMateriais = materiais.map(({ nome }) => nome);
 
@@ -26,7 +28,7 @@ function CadastroMaterialProjeto() {
       });
   }, []);
 
-  const { handleChange, values, clearForm } = useForm(valoresIniciais);
+  const { handleChange, values } = useForm(valoresIniciais);
   return (
     <Template>
       <h1>
@@ -43,7 +45,7 @@ function CadastroMaterialProjeto() {
             materialId:materialEscolhido.id,
             quantidade:values.quantidade
         })
-        clearForm();
+        .then(() => {navigate(`../../lista/materialprojeto?projeto=${query.get("projeto")}`)})
       }}
       >
 

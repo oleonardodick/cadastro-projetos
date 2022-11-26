@@ -19,8 +19,9 @@ function Anotacoes(){
 
       return(
         <Template>
+          <h1>Anotações do projeto</h1>
            <Table
-              cabecalho={['Titulo', 'Texto', 'Data','Projeto','Editar']}
+              cabecalho={['Titulo', 'Texto', 'Data','Editar']}
               elementos={dadosIniciais}
               linkEditar={'../../editar/anotacao?anotacaoId='}
               linkCadastrar={`../../cadastro/anotacao?projeto=${query.get("projeto")}`}

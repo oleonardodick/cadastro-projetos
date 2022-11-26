@@ -21,14 +21,14 @@ function buscaMaterialPorId(materialId){
   });
 }
 
-function postMaterial({nome, descricao, unidadeMedida}){
-  axios.post(URL_MATERIAPRIMA,{nome, descricao, unidadeMedida}).then((response) =>{
+async function postMaterial({nome, descricao, unidadeMedida}){
+  await axios.post(URL_MATERIAPRIMA,{nome, descricao, unidadeMedida}).then((response) =>{
     return response.data;
   })
 }
 
-function atualizaMaterial({id, nome, descricao, unidadeMedida}){
-  axios.put(`${URL_MATERIAPRIMA}/${id}`,{nome, descricao, unidadeMedida}).then((response) =>{
+async function atualizaMaterial({id, nome, descricao, unidadeMedida}){
+  await axios.put(`${URL_MATERIAPRIMA}/${id}`,{nome, descricao, unidadeMedida}).then((response) =>{
     return response.data;
   })
 }

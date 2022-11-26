@@ -32,16 +32,16 @@ function buscaOrdemProducaoPorStatus(status) {
     });
 }
 
-function criaOrdemProducao({projetoId, quantidade, status}){
+async function criaOrdemProducao({projetoId, quantidade, status}){
   projetoId = parseInt(projetoId)
   quantidade = parseFloat(quantidade)
-  axios.post(URL_ORDEMPRODUCAO,{projetoId, quantidade, status}).then((response) =>{
+  await axios.post(URL_ORDEMPRODUCAO,{projetoId, quantidade, status}).then((response) =>{
     return response.data;
   })
 }
 
-function atualizaOrdemProducao({id, status}){
-  axios.put(`${URL_ORDEMPRODUCAO}/${id}`,{status}).then((response) =>{
+async function atualizaOrdemProducao({id, status}){
+  await axios.put(`${URL_ORDEMPRODUCAO}/${id}`,{status}).then((response) =>{
     return response.data;
   })
 }
