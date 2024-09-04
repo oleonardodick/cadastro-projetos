@@ -1,3 +1,10 @@
+#O que é esse projeto?#
+
+Esse projeto tem como objetivo disponibilizar uma aplicação web em react para o controle de projetos.
+
+Através dessa aplicação, juntamente com a API, é possível manter todas as informações de como criar um produto, o estoque desse produto e o preço.
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
