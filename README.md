@@ -1,4 +1,4 @@
-#O que é esse projeto?#
+# O que é esse projeto?
 
 Esse projeto tem como objetivo disponibilizar uma aplicação web em react para o controle de projetos.
 
